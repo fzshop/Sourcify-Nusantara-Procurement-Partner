@@ -12,7 +12,7 @@
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1226;--alt:#0f1a35;--text:#e8ecf5;--muted:#a3adc4;--card:#12203f;--line:#233358}}
 :root[data-theme="dark"]{--bg:#0a1226;--alt:#0f1a35;--text:#e8ecf5;--muted:#a3adc4;--card:#12203f;--line:#233358}
-html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
 *,*:before,*:after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--b)}
 h1,h2,h3{font-family:var(--h);line-height:1.12;margin:0 0 .6em;letter-spacing:-.02em}
@@ -47,7 +47,7 @@ nav a{text-decoration:none;font-size:.95rem;opacity:.9}nav a:hover{opacity:1;col
 svg.net{width:100%;height:auto}
 .net .pulse{animation:pulse 3s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.35}}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:36px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:20px;margin-top:36px}.cols2{grid-template-columns:1fr 1fr;margin:0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px}
 .card h3{margin-bottom:.4em}
 .card p{color:var(--muted);font-size:1rem}
@@ -62,7 +62,7 @@ ol.steps{list-style:none;counter-reset:s;padding:0;margin:20px 0 0}
 ol.steps li{counter-increment:s;position:relative;padding:0 0 18px 48px;color:var(--muted)}
 ol.steps li:before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 .9rem var(--h)}
 .flow{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px}
-.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:32px}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:14px;margin-top:32px}
 .cat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;gap:14px;align-items:center;font-weight:500}
 .cat .ico{margin:0;flex:none}
 details{border-bottom:1px solid var(--line);padding:18px 0}
@@ -104,6 +104,27 @@ nav.open{display:block}nav ul{flex-direction:column;gap:6px}nav a{display:block;
 .burger{display:block}.nav>.btn{display:none}
 .hero .grid,.split,footer .g{grid-template-columns:1fr}
 section{padding:64px 0}.fg{grid-template-columns:1fr}
+}
+img,svg,video{max-width:100%}
+.split>*,.hero .grid>*,footer .g>*,.cols>*,.cats>*,.f{min-width:0}
+h1,h2,h3,p,summary,td,.cat{overflow-wrap:anywhere}
+input,select,textarea{min-width:0;max-width:100%}
+@media(min-width:861px) and (max-width:1024px){.wrap{padding:0 28px}.hero .grid{gap:32px}.split{gap:32px}}
+@media(max-width:600px){
+.wrap{padding:0 18px}
+section{padding:52px 0}
+.hero{padding:48px 0 60px}
+h1{font-size:1.9rem}
+h2{font-size:1.5rem;max-width:none}
+.cols2{grid-template-columns:1fr}
+.ctas .btn{flex:1 1 100%;text-align:center}
+.flow,.card{padding:20px}
+.final .ctas .btn{flex:1 1 100%}
+.ov{padding:0}
+.modal{border-radius:0;min-height:100%;padding:20px 16px;max-width:none}
+.row .btn{flex:1 1 100%;text-align:center}
+.sum td:first-child{width:38%}
+nav{padding:8px 18px 20px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
@@ -155,7 +176,7 @@ section{padding:64px 0}.fg{grid-template-columns:1fr}
 <div class="problem"><strong>Masalah yang umum:</strong> mencari supplier memakan waktu, penawaran tersebar di banyak chat, dan membandingkan harga serta spesifikasi dilakukan manual. Kami merapikan prosesnya menjadi satu alur yang terdokumentasi.</div>
 <button class="btn navy" data-form="klien">Mulai Permintaan Pengadaan</button>
 </div>
-<div class="cols" style="margin:0;grid-template-columns:1fr 1fr">
+<div class="cols cols2">
 <div class="card"><h3>Supplier sourcing</h3><p>Berdasarkan kebutuhan dan spesifikasi barang.</p></div>
 <div class="card"><h3>Perbandingan penawaran</h3><p>Pengumpulan dan penyajian harga secara terstruktur.</p></div>
 <div class="card"><h3>Alternatif supplier</h3><p>Pilihan cadangan bila stok atau harga tidak cocok.</p></div>
